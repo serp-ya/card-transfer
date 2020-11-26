@@ -5,3 +5,5 @@ export const CARD_EXPIRES_MONTH_START = 0;
 export const CARD_EXPIRES_MONTH_END = 2;
 export const CARD_EXPIRES_YEARS_START = 2;
 export const CARD_EXPIRES_YEARS_END = 4;
+export const CARD_EXPIRES_MONTH_LENGTH = 2;
+export const CARD_EXPIRES_YEARS_LENGTH = 2;

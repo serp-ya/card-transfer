@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Field } from 'redux-form';
 import { CardMoneyInput } from './card-money-input';
 import { moneyFormatter } from './card-money-input-utils';
-import { moneyFieldValidators } from './card-money-input-validators';
 
 type TCardMoneyInputReduxProps = {
     label?: string;
@@ -21,6 +20,5 @@ export const CardMoneyInputRedux = React.memo<TCardMoneyInputReduxProps>(({
         label={label}
         name={name}
         required={required}
-        validate={moneyFieldValidators}
     />
 ));
