@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { WrappedFieldInputProps } from 'redux-form';
+import { WrappedFieldInputProps, WrappedFieldMetaProps } from 'redux-form';
 import cn from 'classnames';
 import { InputLabel } from '@material-ui/core';
 import styles from './with-base-field-adapter.module.scss';
 
-type TAdapterComponentProps = {
+export type TAdapterComponentProps = {
     className?: string;
     error?: boolean;
     input: WrappedFieldInputProps,
@@ -13,15 +13,16 @@ type TAdapterComponentProps = {
     required?: boolean;
 };
 
-export type TWithBaseFieldAdapterProps = TAdapterComponentProps & {
+type TWithBaseFieldAdapterProps = TAdapterComponentProps & {
     label?: string;
+    meta: WrappedFieldMetaProps,
 };
 
 export const withBaseFieldAdapter = (AdapterComponent: React.ComponentType<TAdapterComponentProps>) => (
     React.memo<TWithBaseFieldAdapterProps>(({
-        error,
         input,
         label,
+        meta: { error },
         name,
         placeholder,
         required,
@@ -36,7 +37,7 @@ export const withBaseFieldAdapter = (AdapterComponent: React.ComponentType<TAdap
             )}
             <AdapterComponent
                 className={styles['component']}
-                error={error}
+                error={Boolean(error)}
                 input={input}
                 name={name}
                 placeholder={placeholder}

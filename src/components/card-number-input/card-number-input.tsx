@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Input } from '@material-ui/core';
 import { withBaseFieldAdapter } from '../with-base-field-adapter';
-import type { TWithBaseFieldAdapterProps } from '../with-base-field-adapter';
+import type { TAdapterComponentProps } from '../with-base-field-adapter';
 import { CARD_NUMBER_INPUT_PLACEHOLDER } from './card-number-input-constants';
 import styles from './card-number-input.module.scss';
 
-const CardNumberInputComponent = React.memo<TWithBaseFieldAdapterProps>(({
+const CardNumberInputComponent = React.memo<TAdapterComponentProps>(({
     error,
     input,
     placeholder,

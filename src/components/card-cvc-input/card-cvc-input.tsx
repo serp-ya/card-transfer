@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Input } from '@material-ui/core';
 import { withBaseFieldAdapter } from '../with-base-field-adapter';
-import type { TWithBaseFieldAdapterProps } from '../with-base-field-adapter';
+import type { TAdapterComponentProps } from '../with-base-field-adapter';
 import { CARD_CVC_INPUT_PLACEHOLDER } from './card-cvc-input-constants';
 
-const CarCvcInputComponent = React.memo<TWithBaseFieldAdapterProps>(({
+const CarCvcInputComponent = React.memo<TAdapterComponentProps>(({
     error,
     input,
     placeholder,
