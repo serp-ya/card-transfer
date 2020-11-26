@@ -1,0 +1,45 @@
+@import 'src/styles/colors';
+
+.card {
+    background-color: $THEME_WHITE;
+    border-radius: 7px;
+    height: 275px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 20px;
+    position: relative;
+    width: 400px;
+
+    &-logo {
+        height: 18px;
+    }
+
+    &-bottom {
+        display: flex;
+    }
+}
+
+.assets {
+    display: flex;
+    padding-bottom: 25px;
+    padding-top: 20px;
+    justify-content: flex-end;
+}
+
+.card {
+    &-number {
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+
+    &-bottom {
+        display: flex;
+        padding-bottom: 30px;
+    }
+
+    &-logo {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+}

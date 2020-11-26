@@ -1,0 +1,9 @@
+@import 'src/styles/colors';
+@import 'src/styles/variables';
+
+.page-container {
+    background-color: $THEME_BLACK;
+    padding: 48px;
+    min-height: 100vh;
+    @include font-styles(400);
+}

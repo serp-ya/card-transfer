@@ -1,0 +1,1 @@
+export { ApplicationPage } from './application-page';

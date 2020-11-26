@@ -1,0 +1,4 @@
+@mixin font-styles($weight) {
+    font-family: 'Roboto', sans-serif;
+    font-weight: $weight;
+}

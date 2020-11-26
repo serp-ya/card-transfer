@@ -1,0 +1,14 @@
+@import 'src/styles/colors';
+
+.money-input {
+    & input {
+        color: $THEME_GRAY;
+        font-size: 24px;
+    }
+
+    & :global(.MuiInput-underline):before {
+        border-color: $CLASSIK_WHITE;
+
+    }
+}
+

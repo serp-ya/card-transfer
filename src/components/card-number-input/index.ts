@@ -1,0 +1,1 @@
+export { CardNumberInputRedux as CardNumberInput } from './card-number-input-redux';

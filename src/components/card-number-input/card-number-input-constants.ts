@@ -1,0 +1,2 @@
+export const CARD_NUMBER_INPUT_PLACEHOLDER = '0000 0000 0000 0000';
+export const CARD_NUMBER_DEFAULT_LABEL = 'Номер карты';
