@@ -11,10 +11,16 @@
             color: $THEME_RED;
         }
     }
+
     .component {
         color: $THEME_GRAY;
         font-size: 18px;
+
+        &.error {
+            color: $THEME_RED;
+        }
     }
+
     .field {
         margin-top: 10px;
         margin-bottom: 15px;
