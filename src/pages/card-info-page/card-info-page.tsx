@@ -1,15 +1,14 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
-import { getFormAsyncErrors, getFormSubmitErrors, getFormError, getFormSyncErrors } from 'redux-form';
 import type { FormInstance } from 'redux-form';
 import { Button } from '@material-ui/core';
-import { CreditCard } from '../../modules/credit-card';
 import { ApplicationPage } from '../../components/application-page';
 import { CardMoneyInput } from '../../components/card-money-input';
+import { CreditCard } from '../../modules/credit-card';
+import { SimpleModal } from '../../modules/simple-modal';
 import { RUR_SIGN } from '../../constants';
 import { CardInfoPageErrors } from './modules/card-info-page-errors';
 import type { TCreditCardInfoPageFormValues } from './card-info-page-types';
-import { CARD_INFO_PAGE_FORM } from './card-info-page-constants';
 import { getComputedCommission, getCommissionPercent } from './card-info-page-selectors';
 import { ECardInfoFields } from './card-info-page-enum';
 import styles from './card-info-page.module.scss';
@@ -46,12 +45,13 @@ export const CardInfoPage = React.memo((props: FormInstance<TCreditCardInfoPageF
             <div className={styles['button-section']}>
                 <Button
                     className={styles['send-button']}
-                    onClick={() => props.submit()}
+                    onClick={props.submit}
                     variant="contained"
                 >
                     Отправить
                 </Button>
             </div>
+            <SimpleModal />
         </ApplicationPage>
     );
 });

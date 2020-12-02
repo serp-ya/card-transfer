@@ -1,4 +1,3 @@
-import { SubmissionError } from 'redux-form';
 import { ECreditCardForm } from '../../modules/credit-card';
 import {
     CARD_EXPIRES_DELIMETER,
@@ -6,7 +5,11 @@ import {
     CARD_EXPIRES_YEARS_LENGTH,
 } from '../../components/card-expires-input';
 import { CARD_CVC_MAX_LENGTH } from '../../components/card-cvc-input';
-import { CARD_NUMBER_LENGTH, RUR_SIGN } from '../../constants';
+import { CARD_NUMBER_LENGTH, FIRST_MONTH_NUMBER, LAST_MONTH_NUMBER, RUR_CODE, RUR_SIGN } from '../../constants';
+import type {
+    TConfirmOperationPostData,
+    TTransferPostData,
+} from '../../services';
 import type { TCreditCardInfoPageFormValues } from './card-info-page-types';
 import { ECardInfoFields } from './card-info-page-enum';
 
@@ -38,6 +41,13 @@ const validateCardExpires: TBaseFieldValidator = (cardExpires, person) => {
     const currentMonth = dateNow.getMonth() + 1; // need month number, not month index
     const currentYearLastTwoNumbers = dateNow.getFullYear().toString().slice(2);
 
+    if (Number(month) < FIRST_MONTH_NUMBER) {
+        return `Текущий месяц не может быть меньше ${FIRST_MONTH_NUMBER}`;
+    }
+    if (Number(month) > LAST_MONTH_NUMBER) {
+        return `Текущий месяц не может быть больше ${LAST_MONTH_NUMBER}`;
+    }
+
     const monthIsExpires = Number(month) < Number(currentMonth);
     const yearIsExpires = Number(year) < Number(currentYearLastTwoNumbers)
     const yearIsEquals = Number(year) === Number(currentYearLastTwoNumbers)
@@ -67,7 +77,7 @@ const validateMoney: TBaseFieldValidator = (money) => {
     }
 };
 
-const validateCardInfoForm = (values: TCreditCardInfoPageFormValues) => {
+export const validateCardInfoForm = (values: TCreditCardInfoPageFormValues) => {
     const errors = {};
     const fromErrors = {};
     const toErrors = {};
@@ -110,12 +120,20 @@ const validateCardInfoForm = (values: TCreditCardInfoPageFormValues) => {
     }
 
     return errors;
-}
-
-export const onSubmitHandler = (values: TCreditCardInfoPageFormValues, ...other) => {
-    const errors = validateCardInfoForm(values);
-
-    if (Object.keys(errors).length > 0) {
-        throw new SubmissionError(errors)
-    }
 };
+
+export const prepareFormValuesToSendTransfer = (values: TCreditCardInfoPageFormValues): TTransferPostData => ({
+    cardFromNumber: values[ECardInfoFields.From][ECreditCardForm.CardNumber].replace(/\D/g, ''),
+    cardToNumber: values[ECardInfoFields.To][ECreditCardForm.CardNumber].replace(/\D/g, ''),
+    cardFromCVV: values[ECardInfoFields.From][ECreditCardForm.CardCvc] as string,
+    cardFromValidTill: values[ECardInfoFields.From][ECreditCardForm.CardExpires] as string,
+    amount: {
+        currency: RUR_CODE,
+        value: Number(values[ECardInfoFields.Money].replace(/\D/g, '')) * 100,
+    },
+});
+
+export const prepareOperationIdToSendConfirmation = (operationId: string): TConfirmOperationPostData => ({
+    code: '0000',
+    operationId,
+});
