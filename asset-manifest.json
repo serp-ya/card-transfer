@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/card-transfer/static/css/main.3f94be82.chunk.css",
+    "main.js": "/card-transfer/static/js/main.6803cd74.chunk.js",
+    "main.js.map": "/card-transfer/static/js/main.6803cd74.chunk.js.map",
+    "runtime-main.js": "/card-transfer/static/js/runtime-main.79271abc.js",
+    "runtime-main.js.map": "/card-transfer/static/js/runtime-main.79271abc.js.map",
+    "static/js/2.102f58b6.chunk.js": "/card-transfer/static/js/2.102f58b6.chunk.js",
+    "static/js/2.102f58b6.chunk.js.map": "/card-transfer/static/js/2.102f58b6.chunk.js.map",
+    "index.html": "/card-transfer/index.html",
+    "static/css/main.3f94be82.chunk.css.map": "/card-transfer/static/css/main.3f94be82.chunk.css.map",
+    "static/js/2.102f58b6.chunk.js.LICENSE.txt": "/card-transfer/static/js/2.102f58b6.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.79271abc.js",
+    "static/js/2.102f58b6.chunk.js",
+    "static/css/main.3f94be82.chunk.css",
+    "static/js/main.6803cd74.chunk.js"
+  ]
+}
