@@ -1,46 +1,46 @@
-# Getting Started with Create React App
+# Переводы с карту на карту
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Приложение предоставляет простой интерфейс перевода денег с карты на карту.
 
-## Available Scripts
+![Main screen](./assets/main-page.png)
 
-In the project directory, you can run:
+## Запуск
+Для запуска приложения нужно склонировать репозиторий, открыть корневую директорию проекта и выполнить команду `npm i`. После установки всех зависимостей, нужно поменять значение переменной `REACT_APP_API_URL` в файле `.env` URL нашего API на свой. Описывать эндпоинты в файле `.env` **НЕ НУЖНО**.
 
-### `yarn start`
+Для запуска приложения необходимо выполнить команду `npm run start` в корневой папке проекта. Проект будет доступен по ссылке `http://localhost:3000/`.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Описание
+Проект предоставляет UI для перевода денег с карты на карту. В видимой части приложения присутствуют две карты (откуда и куда переводить), поле ввода суммы перевода и кнопка "отправить".
 
-### `yarn test`
+На форму наложены ограничения и форматирования ввода, можно ввести только числа.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Форматирование на полях:
+Номер карты `0000000000000000` => `0000 0000 0000 0000`
+ММ/ГГ `1234` => `12/34`
+Сумма перевода `12345678` = `₽ 12 345 678`
 
-### `yarn build`
+Валидации на полях:
+`Номер карты` - обязательное, минимум 16 знаков
+`ММ/ГГ` - обязательное, минимум 4 знака, дата не может быть ниже текущей, месяц не может быть ниже 1 и выше 12
+`CVC` - обязательное, минимум 3 знака
+`Сумма перевода` - обязательное, не может быть равное или меньше 0
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Проверка ошибок срабатывает во время нажатия кнопки "Отправить"
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![Errors screen](./assets/errors.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Запросы
+Запросы формируются самим приложением на URL состоящий из заданного значения переменной `REACT_APP_API_URL` и "хвостов" эндпоинта.
 
-### `yarn eject`
+Эндпоинты:
+`/transfer` - принимает объект с данными формы
+`/confirmOperation` - принимает объект с айди операции и секретным кодом
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+При возникновении ошибки на стороне сервера, будет отображено модальное окно с текстом ошибки, которую сервер прислал в поле `message` ответа.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![Errors modal](./assets/error-modal.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+При успешной отправке, отображается соответствующее модальное окно и поля формы очищаются.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+![Errors modal](./assets/ok-modal.png)
