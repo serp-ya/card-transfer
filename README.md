@@ -2,6 +2,8 @@
 
 Приложение предоставляет простой интерфейс перевода денег с карты на карту.
 
+Демо: https://serp-ya.github.io/card-transfer/
+
 ![Main screen](./assets/main-page.png)
 
 ## Запуск
