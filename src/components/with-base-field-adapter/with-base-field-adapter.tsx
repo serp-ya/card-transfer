@@ -36,7 +36,7 @@ export const withBaseFieldAdapter = (AdapterComponent: React.ComponentType<TAdap
                 </InputLabel>
             )}
             <AdapterComponent
-                className={cn(styles['component'], { [styles['error']]: error })}
+                className={cn(styles['component'], { [styles['error']]: error, [styles['not-empty']]: input?.value })}
                 error={Boolean(error)}
                 input={input}
                 name={name}

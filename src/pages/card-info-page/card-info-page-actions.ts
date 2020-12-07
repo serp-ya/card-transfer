@@ -7,6 +7,10 @@ import {
     DEFAULT_OK_TITLE,
     openSimpleModalAction,
 } from '../../modules/simple-modal';
+import type {
+    TConfirmOperationPostDataResponse,
+    TTransferPostDataResponse,
+} from '../../services';
 import {
     CONFIRM_OPERATION_URL,
     TRANSFER_URL
@@ -28,10 +32,10 @@ export const onSubmitHandler = async (values: TCreditCardInfoPageFormValues, dis
 
     try {
         const dataForTransfer = prepareFormValuesToSendTransfer(values);
-        const transferResponse = await axios.post(TRANSFER_URL, { data: dataForTransfer });
-        const dataForConfirmation = prepareOperationIdToSendConfirmation(transferResponse.data.ref);
-        await axios.post(CONFIRM_OPERATION_URL, { data: dataForConfirmation });
-        
+        const transferResponse = await axios.post<TTransferPostDataResponse>(TRANSFER_URL, { data: dataForTransfer });
+        const dataForConfirmation = prepareOperationIdToSendConfirmation(transferResponse?.data?.operationId);
+        await axios.post<TConfirmOperationPostDataResponse>(CONFIRM_OPERATION_URL, { data: dataForConfirmation });
+
         dispatch(
             openSimpleModalAction(DEFAULT_OK_TITLE, DEFAULT_OK_MESSAGE)
         );

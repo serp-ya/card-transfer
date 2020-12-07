@@ -13,8 +13,12 @@
     }
 
     .component {
-        color: $THEME_GRAY;
+        color: $THEME_BLACK;
         font-size: 18px;
+
+        &.not-empty {
+            font-weight: 600;
+        }
 
         &.error {
             color: $THEME_RED;

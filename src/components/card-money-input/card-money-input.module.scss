@@ -5,10 +5,20 @@
         color: $THEME_GRAY;
         font-size: 24px;
     }
+    &.not-empty input {
+        color: $THEME_WHITE;
+        font-weight: 600;
+    }
+
+    & .currency-sign :global(.MuiTypography-root) {
+        color: $THEME_WHITE;
+        font-size: 24px;
+        font-weight: 600;
+        padding-left: 10px;
+    }
 
     & :global(.MuiInput-underline):before {
         border-color: $CLASSIK_WHITE;
-
     }
 }
 

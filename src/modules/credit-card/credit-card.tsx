@@ -27,7 +27,7 @@ export const CreditCard = React.memo<TCreditCardProps>(({
                 <div className={styles['assets']}>
                     <img alt="Visa Card Logo" className={styles['card-logo']} src={VisaCardLogo} />
                     <img alt="Master Card Logo" className={styles['card-logo']} src={MasterCardLogo} />
-                    <img alt="Mir Card Logo" className={styles['card-logo']} src={MirCardLogo} />
+                    <img alt="Mir Card Logo" className={cn(styles['card-logo'], styles['card-logo-mir'])} src={MirCardLogo} />
                 </div>
                 <div className={styles['card-number']}>
                     <CardNumberInput name={ECreditCardForm.CardNumber} required />

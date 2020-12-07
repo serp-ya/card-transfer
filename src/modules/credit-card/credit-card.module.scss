@@ -22,8 +22,8 @@
 
 .assets {
     display: flex;
-    padding-bottom: 25px;
-    padding-top: 20px;
+    padding-bottom: 30px;
+    padding-top: 5px;
     justify-content: flex-end;
 }
 
@@ -41,5 +41,9 @@
     &-logo {
         margin-left: 5px;
         margin-right: 5px;
+
+        &-mir {
+            transform: scale(0.9);
+        }
     }
 }
