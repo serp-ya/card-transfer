@@ -32,9 +32,9 @@ export const onSubmitHandler = async (values: TCreditCardInfoPageFormValues, dis
 
     try {
         const dataForTransfer = prepareFormValuesToSendTransfer(values);
-        const transferResponse = await axios.post<TTransferPostDataResponse>(TRANSFER_URL, { data: dataForTransfer });
+        const transferResponse = await axios.post<TTransferPostDataResponse>(TRANSFER_URL, dataForTransfer);
         const dataForConfirmation = prepareOperationIdToSendConfirmation(transferResponse?.data?.operationId);
-        await axios.post<TConfirmOperationPostDataResponse>(CONFIRM_OPERATION_URL, { data: dataForConfirmation });
+        await axios.post<TConfirmOperationPostDataResponse>(CONFIRM_OPERATION_URL, dataForConfirmation);
 
         dispatch(
             openSimpleModalAction(DEFAULT_OK_TITLE, DEFAULT_OK_MESSAGE)
