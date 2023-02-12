@@ -129,7 +129,7 @@ export const prepareFormValuesToSendTransfer = (values: TCreditCardInfoPageFormV
     cardFromValidTill: values[ECardInfoFields.From][ECreditCardForm.CardExpires] as string,
     amount: {
         currency: RUR_CODE,
-        value: Number(values[ECardInfoFields.Money].replace(/\D/g, '')) * 100,
+        value: Number(values[ECardInfoFields.Money].replace(/\D/g, '')),
     },
 });
 
